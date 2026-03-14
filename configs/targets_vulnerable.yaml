@@ -1,0 +1,10 @@
+﻿base_url: "http://127.0.0.1:8000"
+openapi_path: "samples/openapi/vulnerable_api.json"
+report_path: "samples/reports/vulnerable_report.json"
+users:
+  - username: "alice"
+    password: "alice123"
+    expected_user_id: 1
+  - username: "bob"
+    password: "bob123"
+    expected_user_id: 2

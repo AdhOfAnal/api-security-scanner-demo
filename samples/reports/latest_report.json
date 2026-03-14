@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "generated_at": "2026-03-14T12:09:56.819274+00:00",
+    "base_url": "http://127.0.0.1:8000",
+    "openapi_path": "samples\\openapi\\vulnerable_api.json",
+    "report_path": "samples\\reports\\latest_report.json",
+    "total_findings": 2
+  },
+  "findings": [
+    {
+      "rule_id": "bola",
+      "title": "Possible Broken Object Level Authorization",
+      "severity": "high",
+      "confidence": "high",
+      "endpoint": "/orders/{order_id}",
+      "method": "GET",
+      "evidence": {
+        "actor": {
+          "username": "alice",
+          "id": 1
+        },
+        "tested_input": {
+          "order_id": 2
+        },
+        "resource_owner": 2,
+        "response_status": 200,
+        "response_keys": [
+          "amount",
+          "item",
+          "order_id",
+          "owner_id"
+        ]
+      },
+      "recommendation": "Verify resource ownership before returning object data."
+    },
+    {
+      "rule_id": "sensitive_data",
+      "title": "Potential Sensitive Data Exposure",
+      "severity": "medium",
+      "confidence": "high",
+      "endpoint": "/profile",
+      "method": "GET",
+      "evidence": {
+        "actor": {
+          "username": "alice",
+          "id": 1
+        },
+        "response_status": 200,
+        "response_keys": [
+          "email",
+          "id",
+          "role",
+          "username"
+        ],
+        "matched_sensitive_fields": [
+          "role",
+          "email"
+        ]
+      },
+      "recommendation": "Minimize response fields and avoid returning sensitive attributes by default."
+    }
+  ]
+}

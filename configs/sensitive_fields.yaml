@@ -1,0 +1,5 @@
+﻿sensitive_fields:
+  - role
+  - email
+  - is_admin
+  - phone
